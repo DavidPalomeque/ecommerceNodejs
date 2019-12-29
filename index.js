@@ -6,6 +6,7 @@ const path = require("path")
 const session = require("express-session")
 const passport = require("passport")
 const flash = require("connect-flash")
+const multer = require("multer")
 
 // INITIALIZATIONS
 const app = express()
@@ -28,6 +29,13 @@ app.set("view engine" , "hbs")
 app.use(morgan("dev"))
 app.use(express.urlencoded({extended : false}))
 app.use(express.json())
+const storage = multer.diskStorage({
+    destination : path.join(__dirname , "public/images"),
+    filename : (req , file , cb) => {
+        cb(null , new Date().getTime() + path.extname(file.originalname))
+    }
+})
+app.use(multer({storage}).single("file"))
 app.use(session({
     secret : "secret" ,
     resave : true ,
@@ -39,7 +47,7 @@ app.use(flash())
 
 // GLOBAL VARIABLES
 app.use((req , res , next) => {
-    res.locals.success = req.flash("success_msg")
+    res.locals.success_msg = req.flash("success_msg")
     res.locals.error_msg = req.flash("error_msg")
     res.locals.error = req.flash("error")
     res.locals.user = req.user || null
@@ -49,6 +57,7 @@ app.use((req , res , next) => {
 // ROUTES
 app.use(require("./routes/landingPageRouter"))
 app.use(require("./routes/userRouter"))
+app.use(require("./routes/productRouter"))
 
 // SERVER
 app.listen(app.get("port") , () => {
