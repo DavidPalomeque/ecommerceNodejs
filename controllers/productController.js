@@ -87,7 +87,7 @@ productCtrl.addProductToShopcart = async(req , res) => {
     if (quantity == "" || null) quantity = 1
 
     // Validations
-    if (!user || !product) { // if something is missing
+    if (!user || !product || !userId || !productId) { // if something is missing
         req.flash("error_msg" , "This action can´t be done")
         res.redirect("/products")
     } else {
