@@ -2,7 +2,7 @@ const router = require("express").Router()
 const landingPageCtrl = require("../controllers/landingPageController")
 
 router.get("/" , (req , res) => {
-    res.render("landingPage/landingpage")
+    res.render("landingpage/landingpage")
 })
 
 router.post("/contactForm" , landingPageCtrl.contactForm)
