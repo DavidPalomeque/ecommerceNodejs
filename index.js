@@ -58,6 +58,7 @@ app.use((req , res , next) => {
 app.use(require("./routes/landingPageRouter"))
 app.use(require("./routes/userRouter"))
 app.use(require("./routes/productRouter"))
+app.use(require("./routes/shopcartRouter"))
 
 // SERVER
 app.listen(app.get("port") , () => {
