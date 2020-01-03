@@ -13,7 +13,7 @@
 
     {{#if user}}
     <div class="col-sm-12 col-md-4 mt-3">
-        <a href="/shopcart/buy/{{user._id}}" class="btn btn-sm btn-outline-success btn-block"> BUY </a>
+        <a href="/shopcart/buy/{{user._id}}" class="btn btn-sm btn-outline-success btn-block"> BUY ALL </a>
     </div>
     <div class="col-sm-12 col-md-4 mt-3">
         <a href="/shopcart/clean/{{user._id}}" class="btn btn-sm btn-outline-danger btn-block"> CLEAN ALL </a>
@@ -28,21 +28,21 @@
                         <th scope="col">PRODUCT</th>
                         <th scope="col">PRICE</th>
                         <th scope="col">QUANTITY</th>
-                        <th scope="col">QUIT</th>
+                        <th scope="col">DELETE</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{#each shopcart}}
                     <tr>
                         <td>
-                            <img src="{{imageURL}}" width="100px" height="100px">
+                            <img class="img-fluid" src="{{imageURL}}" width="100px" height="100px">
                             {{name}}
                         </td>
-                        <td>${{price}} (By unity)</td>
-                        <td>{{boughtQuantity}}</td>
+                        <td><h5> ${{price}} (By unity) </h5></td>
+                        <td><h5> {{boughtQuantity}} </h5></td>
                         <td>
                             <a href="/shopcart/deleteProduct/{{_id}}"> 
-                                <i class="fas fa-trash-alt" style="color: red;font-size:larger"></i> 
+                                <h5> <i class="fas fa-trash-alt" style="color: red;font-size:larger"></i> </h5> 
                             </a> 
                         </td>
                     </tr>
