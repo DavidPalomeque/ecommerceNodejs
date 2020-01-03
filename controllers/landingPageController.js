@@ -27,6 +27,8 @@ landingPageCtrl.contactForm = async (req, res) => {
     transporter.sendMail(mailOptions, function (error, info) { // Send email
       if (error) {
         console.log(error);
+        req.flash("error_msg" , "Sorry , some error happened.")
+        res.redirect("/")
       } else {
         console.log('Email sent: ' + info.response)
         req.flash("success_msg" , "Email was sent successfully !")
